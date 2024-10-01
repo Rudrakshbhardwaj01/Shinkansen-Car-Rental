@@ -682,6 +682,7 @@ public:
             break;
         case 5:
             cout << "-- Car Search --" << endl;
+            searchCars();
             break;
         case 6:
             cout << "-- Client Database --" << endl;
