@@ -531,7 +531,7 @@ public:
         cout << "Car details for model " << carModel << " have been successfully updated!" << endl;
     }
 
-    vector<Car> loadCarsFromCSV(const string &filename)
+    static vector<Car> loadCarsFromCSV(const string &filename)
     {
         vector<Car> cars;
         ifstream in(filename);
@@ -566,8 +566,8 @@ public:
         return cars;
     }
 
-    vector<Car> searchCars(const vector<Car> &cars, const string &engineType, const string &company,
-                           int seatingCapacity, double minPrice, double maxPrice)
+    static vector<Car> searchCars(const vector<Car> &cars, const string &engineType, const string &company,
+                                  int seatingCapacity, double minPrice, double maxPrice)
     {
         vector<Car> result;
         for (const auto &car : cars)
@@ -583,7 +583,7 @@ public:
         return result;
     }
 
-    void sortCars(vector<Car> &cars, const string &sortBy)
+    static void sortCars(vector<Car> &cars, const string &sortBy)
     {
         if (sortBy == "price")
         {
@@ -602,7 +602,7 @@ public:
         }
     }
 
-    void displayCars(const vector<Car> &cars)
+    static void displayCars(const vector<Car> &cars)
     {
         for (const auto &car : cars)
         {
@@ -612,7 +612,7 @@ public:
         }
     }
 
-    void searchCars()
+    static void searchCars()
     {
         vector<Car> cars = loadCarsFromCSV("car_rental_data.csv");
         string engineType, company, sortBy;
@@ -634,11 +634,9 @@ public:
         cin.ignore();
         getline(cin, sortBy);
 
-        // Filter and sort the cars
         vector<Car> filteredCars = searchCars(cars, engineType, company, seatingCapacity, minPrice, maxPrice);
         sortCars(filteredCars, sortBy);
 
-        // Display results
         if (filteredCars.empty())
         {
             cout << "No cars found matching your criteria." << endl;
